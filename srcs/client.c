@@ -6,7 +6,7 @@
 /*   By: gucamuze <gucamuze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 02:15:36 by gucamuze          #+#    #+#             */
-/*   Updated: 2021/07/27 20:13:49 by gucamuze         ###   ########.fr       */
+/*   Updated: 2021/07/30 12:15:31 by gucamuze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void	set_sigaction(struct sigaction *sigusr_sigaction)
 {
 	sigusr_sigaction->sa_handler = &sigusr1_client_handler;
 	sigusr_sigaction->sa_flags = 0;
+	sigemptyset(&sigusr_sigaction->sa_mask);
+	sigaddset(&sigusr_sigaction->sa_mask, SIGUSR1);
+	sigaddset(&sigusr_sigaction->sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, sigusr_sigaction, NULL);
 	sigaction(SIGUSR2, sigusr_sigaction, NULL);
 }
